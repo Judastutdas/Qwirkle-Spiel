@@ -1,8 +1,8 @@
 #include <cstdlib>
 #include <iostream>
-#include <conio.h>
+//#include <conio.h>
 #include <stdio.h>
-#include <windows.h>
+//#include <windows.h>
 #include <time.h>
 #include "Farbe.h"
 
@@ -86,7 +86,6 @@ const int iHoehe = 15;
 //fürs spielfeld
 S_Feld Spielfeld[iBreite][iHoehe];
 
-
 //für ausgewähltes feld
 S_Feld Ausgewaehlt[iBreite][iHoehe];
 
@@ -96,15 +95,21 @@ S_Feld Ausgewaehlt[iBreite][iHoehe];
 
 int main(int argc, char *argv[])
 {
+//alle felder = 0 setzen
+      for (int yi=0; yi<iHoehe; yi++)
+      {
+             for (int xi=0; xi<iBreite; xi++)
+             {
+                 Spielfeld[xi][yi].Besetzt = false;
+             }
+      }
     //Lokale Variable
     char chauswahl;
   do{   
-    
-    cout<<"Feld Anzeigen(1)"<<endl;
-    cout<<"Feld Besetzten(2)"<<endl;
-    cout<<"Spiel Beenden(3)"<<endl;
-    chauswahl = getch();
-    
+    printf("Feld Anzeigen(1)\n");
+    printf("Feld Besetzten(2)\n");
+    printf("Spiel Beenden(3)\n");
+    chauswahl = getchar();
 
     if(chauswahl == '1')
     {
@@ -121,13 +126,13 @@ int main(int argc, char *argv[])
     
     else if(chauswahl == '3')
     {
-         cout<<"Programm wird Beendet!"<<endl;
+         printf("Programm wird Beendet!\n");
          
          return 0;
     }
     else
     {
-        cout<<"Falsche Eingabe!"<<endl;
+        printf("Falsche Eingabe!\n");
     }
  }while ((chauswahl != 1)||(chauswahl != 2));
  
@@ -136,41 +141,41 @@ int main(int argc, char *argv[])
 
 void ZeigeSpielfeld()
 {
-      system("cls");
+      //system("cls");
      
-     cout<<x<<endl;
-     cout<<y<<endl;
-     cout<<Punkte<<endl;
-     cout<<cansetr1<<endl;
-      cout<<cansetr2<<endl;
+     printf("%d\n",x);
+     printf("%d\n",y);
+     printf("%d\n",Punkte);
+     //printf(cansetr1<<endl;
+     //printf(cansetr2<<endl;
 
-     for (int y=0; y<iHoehe; y++)
+     for (int yi=0; yi<iHoehe; yi++)
          {
-             for (int x=0; x<iBreite; x++)
+             for (int xi=0; xi<iBreite; xi++)
              {         
                                 
                      //besetzt von curser
-                     if(Spielfeld[x][y].Besetzt == true)
+                     if(Spielfeld[xi][yi].Besetzt == false && xi == x && yi == y )
                      {   
-                         cout<<"() ";
+                         printf("() ");
                      }
 
-                     else if(Spielfeld[x][y].Besetzt == true)
+                     else if(Spielfeld[xi][yi].Besetzt == true)
                      {    
-                          Farbe(Spielfeld[x][y].spielstein.farbe,0); 
-                          cout<<" ";
-                          cout<<Spielfeld[x][y].spielstein.form;
-                          cout<<" ";
-                          Farbe(15,0);
+                          //Farbe(Spielfeld[xi][yi].spielstein.farbe,0); 
+                          printf(" ");
+                          //printf("%c",Spielfeld[xi][yi].spielstein.form);
+                          printf(" ");
+                          //Farbe(15,0);
                      }
                     
                      else
                      {
-                          cout<<"[] ";
+                          printf("[] ");
                      }
              }
              
-             cout<<endl;
+             printf("\n");
         
          }
 }
@@ -180,18 +185,11 @@ void ZeigeSpielfeld()
 void Feldauswahl()
 {
      
+      do{
       
-      //alle felder = 0 setzen
-      for (int yi=0; yi<iHoehe; yi++)
-      {
-             for (int xi=0; xi<iBreite; xi++)
-             {
-                 //Spielfeld[xi][yi].Besetzt = false;
-             }
-      }
      
      do{
-     cBewegung = getch();
+     cBewegung = getchar();
      }while(cBewegung<0); //behebt Bug bei drücken von Pfeiltasten
      
      if((cBewegung == 72))
@@ -199,7 +197,7 @@ void Feldauswahl()
           //Nach oben Bewegen
           y = y-1;
           //Curser 
-         Spielfeld[x][y].Besetzt = true;
+         //Spielfeld[x][y].Besetzt = true;
      }
      
      else if((cBewegung == 80))
@@ -207,7 +205,7 @@ void Feldauswahl()
           //Nach unten Bewegen
           y = y+1;
           //Curser 
-         Spielfeld[x][y].Besetzt = true;
+         //Spielfeld[x][y].Besetzt = true;
      }
      
      else if((cBewegung == 77))
@@ -215,7 +213,7 @@ void Feldauswahl()
           //Nach Rechts
           x = x+1;
           //Curser 
-         Spielfeld[x][y].Besetzt = true;
+         //Spielfeld[x][y].Besetzt = true;
      }
      
      else if((cBewegung == 75))
@@ -223,7 +221,7 @@ void Feldauswahl()
           //Nach Links
           x = x-1;
          //Curser 
-         Spielfeld[x][y].Besetzt = true;
+         //Spielfeld[x][y].Besetzt = true;
 
      }
      
@@ -295,11 +293,12 @@ void Feldauswahl()
         Spielfeld[x][y].steinb5punkterechnung = true;
         
      }*/
-     else{
+     else if (cBewegung == (char) 115){ //115 == 's'
            Spielstein spielstein;
            spielstein.form = (char)(cBewegung+63);
            //break;
            }
+}while(cBewegung != 115);
 }
 
 

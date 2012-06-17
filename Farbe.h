@@ -5,7 +5,7 @@
 inline void Farbe(int itext, int ihintergrund)
 {
 int icolor=itext+16*ihintergrund;
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),icolor);
+//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),icolor);
 }
 
 #endif
