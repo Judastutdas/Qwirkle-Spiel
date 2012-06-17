@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include <time.h>
-//#include "Farbe.h"
+#include "Farbe.h"
 
 //
 //Vincent Musch
@@ -157,11 +157,11 @@ void ZeigeSpielfeld()
 
                      else if(Spielfeld[x][y].Besetzt == true)
                      {    
-                          //Farbe(Spielfeld[x][y].spielstein.farbe,0); 
+                          Farbe(Spielfeld[x][y].spielstein.farbe,0); 
                           cout<<" ";
                           cout<<Spielfeld[x][y].spielstein.form;
                           cout<<" ";
-                          //Farbe(15,0);
+                          Farbe(15,0);
                      }
                     
                      else
@@ -298,7 +298,7 @@ void Feldauswahl()
      else{
            Spielstein spielstein;
            spielstein.form = (char)(cBewegung+63);
-           break;
+           //break;
            }
 }
 
